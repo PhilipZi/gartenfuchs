@@ -9,11 +9,16 @@ export default {
     "./error.vue",
   ],
   theme: {
+    container: {
+      center: true,
+      // padding: "2rem",
+    },
     extend: {
       colors: {
-        gf_green: "#2E7D32",
+        gf_green: "#6AAF08",
         gf_red: "#C62828",
         gf_blue: "#1565C0",
+        dark: "#272727",
       },
     },
   },

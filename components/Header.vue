@@ -1,57 +1,136 @@
 <template>
-  <div class="bg-white relative">
-    <header class="p-4 md:p-16 relative">
-      <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-2xl md:text-3xl font-bold">Gartenfuchs</h1>
-      </div>
-      <!-- Wrapper for the black and green divs on desktops -->
-      <div
-        class="hidden md:flex absolute -bottom-8 z-10 left-0 right-0 justify-between container mx-auto"
-      >
-        <!-- black navigation -->
-        <div class="w-4/5 flex items-center bg-dark p-5">
-          <nav>
-            <ul class="flex space-x-4 text-white">
-              <li><NuxtLink to="/">Home</NuxtLink></li>
-              <li><NuxtLink to="/impressum">Über uns</NuxtLink></li>
-              <li><NuxtLink to="/kontakt">Dienstleistungen</NuxtLink></li>
-              <li><NuxtLink to="/datenschutz">Bilder</NuxtLink></li>
-              <li><NuxtLink to="/projekte">Kontakt</NuxtLink></li>
-            </ul>
-          </nav>
-        </div>
-        <!-- green div -->
-        <div class="w-1/5 p-5 bg-gf_green flex items-center gap-2 text-white">
-          <a href="tel:05341 54545454" class="flex items-center space-x-2">
-            <SvgIcon iconType="call" viewBox="0 0 100 100" />
-            <span>05341 / 347 384 4</span>
-          </a>
-        </div>
-      </div>
-      <!-- Wrapper for the black and green divs on mobile -->
-      <div class="md:hidden flex flex-col items-center mt-4">
-        <!-- green div -->
-        <div
-          class="w-full p-3 bg-gf_green flex items-center justify-center text-white"
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <!-- Logo -->
+        <NuxtLink to="/" class="flex items-center">
+          <span class="text-2xl font-bold text-gf_green">Gartenfuchs</span>
+        </NuxtLink>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <NuxtLink
+            to="/"
+            class="text-gray-700 hover:text-gf_green transition-colors"
+            active-class="text-gf_green font-semibold"
+          >
+            Home
+          </NuxtLink>
+          <NuxtLink
+            to="/projekte"
+            class="text-gray-700 hover:text-gf_green transition-colors"
+            active-class="text-gf_green font-semibold"
+          >
+            Projekte
+          </NuxtLink>
+          <NuxtLink
+            to="/kontakt"
+            class="text-gray-700 hover:text-gf_green transition-colors"
+            active-class="text-gf_green font-semibold"
+          >
+            Kontakt
+          </NuxtLink>
+          <NuxtLink
+            to="/kontakt"
+            class="btn bg-gf_yellow text-gf_green hover:bg-gf_green hover:text-white border-0"
+          >
+            Beratung anfordern
+          </NuxtLink>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button
+          class="md:hidden text-gray-700"
+          @click="isMenuOpen = !isMenuOpen"
         >
-          <a href="tel:05341 54545454" class="flex items-center space-x-2">
-            <SvgIcon iconType="call" viewBox="0 0 100 100" />
-            <span>05341 / 347 384 4</span>
-          </a>
-        </div>
-        <!-- black navigation -->
-        <div class="w-full bg-dark p-5 mt-4">
-          <nav>
-            <ul class="flex flex-col items-center space-y-4 text-white">
-              <li><NuxtLink to="/">Home</NuxtLink></li>
-              <li><NuxtLink to="/impressum">Über uns</NuxtLink></li>
-              <li><NuxtLink to="/kontakt">Dienstleistungen</NuxtLink></li>
-              <li><NuxtLink to="/datenschutz">Bilder</NuxtLink></li>
-              <li><NuxtLink to="/projekte">Kontakt</NuxtLink></li>
-            </ul>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div v-if="isMenuOpen" class="md:hidden fixed inset-0 bg-white z-50">
+        <div class="flex flex-col h-full">
+          <div class="flex justify-between items-center p-4 border-b">
+            <NuxtLink to="/" class="text-2xl font-bold text-gf_green">
+              Gartenfuchs
+            </NuxtLink>
+            <button @click="isMenuOpen = false" class="text-gray-700">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          <nav class="flex flex-col p-4 space-y-4">
+            <NuxtLink
+              to="/"
+              class="text-gray-700 hover:text-gf_green transition-colors text-lg"
+              @click="isMenuOpen = false"
+              active-class="text-gf_green font-semibold"
+            >
+              Home
+            </NuxtLink>
+            <NuxtLink
+              to="/projekte"
+              class="text-gray-700 hover:text-gf_green transition-colors text-lg"
+              @click="isMenuOpen = false"
+              active-class="text-gf_green font-semibold"
+            >
+              Projekte
+            </NuxtLink>
+            <NuxtLink
+              to="/kontakt"
+              class="text-gray-700 hover:text-gf_green transition-colors text-lg"
+              @click="isMenuOpen = false"
+              active-class="text-gf_green font-semibold"
+            >
+              Kontakt
+            </NuxtLink>
+            <NuxtLink
+              to="/kontakt"
+              class="btn bg-gf_yellow text-gf_green hover:bg-gf_green hover:text-white border-0 w-full"
+              @click="isMenuOpen = false"
+            >
+              Beratung anfordern
+            </NuxtLink>
           </nav>
         </div>
       </div>
-    </header>
-  </div>
+    </div>
+  </header>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const isMenuOpen = ref(false);
+</script>
+
+<style scoped>
+.router-link-active {
+  @apply text-gf_green font-semibold;
+}
+</style>

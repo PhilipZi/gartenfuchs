@@ -10,3 +10,7 @@ body {
   font-family: "Poppins", sans-serif;
   @apply text-dark fill-slate-600 bg-white;
 }
+
+h1 {
+  @apply text-3xl font-bold;
+}
